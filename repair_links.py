@@ -1,3 +1,9 @@
+"""Utility for generating the Mathly lesson pages and keeping links consistent.
+
+This script creates a predictable topic structure for the static learning site and
+ensures each section has a matching overview and lesson page.
+"""
+
 from pathlib import Path
 import re
 

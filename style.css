@@ -1,3 +1,9 @@
+/*
+  Mathly site-wide theme and layout styles.
+  The design uses CSS custom properties so the same visual system works
+  across the landing page and lesson pages without duplication.
+*/
+
 :root {
     --bg: #f5f7fb;
     --bg-accent: #edf3ff;
@@ -55,6 +61,7 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* Shared shell and top navigation */
 .page-shell {
     max-width: 1400px;
     margin: 0 auto;
@@ -106,6 +113,7 @@ h1 {
     color: var(--text);
 }
 
+/* Theme toggle */
 .theme-toggle {
     border: 1px solid var(--border);
     background: var(--panel-strong);
@@ -129,6 +137,7 @@ h1 {
     font-size: 1.1rem;
 }
 
+/* Topic navigation */
 .topic-nav {
     margin-top: 16px;
     padding: 20px 14px 10px;
@@ -179,6 +188,7 @@ h1 {
     background: var(--panel-soft) !important;
 }
 
+/* Home page hero and feature sections */
 .content {
     padding-top: 26px;
 }
@@ -352,6 +362,7 @@ h1 {
     text-align: center;
 }
 
+/* Shared lesson-page styling */
 body .page-card,
 body .lesson-box,
 body .container,
@@ -471,8 +482,15 @@ body .page-tools {
 }
 
 body .page-card a,
-body a:not(.btn) {
+body a:not(.btn):not(.page-next-btn) {
     color: var(--primary) !important;
+}
+
+body .page-next-btn,
+body .page-next-btn:visited,
+body .page-next-btn:hover,
+body .page-next-btn:focus {
+    color: var(--button-text) !important;
 }
 
 @media (max-width: 991px) {

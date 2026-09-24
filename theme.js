@@ -1,6 +1,13 @@
+/*
+  Shared theme and navigation logic for the Mathly website.
+  This file is loaded on every page so the same dark/light mode
+  and “Next” button behaviour stays consistent site-wide.
+*/
 (function () {
+  'use strict';
+
   const body = document.body;
-  const savedTheme = localStorage.getItem('mathly-theme') || 'light';
+  const THEME_KEY = 'mathly-theme';
   const lessonPages = [
     'adding-and-subtracting-decimals.html',
     'adding-and-subtracting-fractions.html',
@@ -89,14 +96,21 @@
     'written-addition-and-subtraction.html'
   ];
 
+  function getSavedTheme() {
+    return localStorage.getItem(THEME_KEY) || 'light';
+  }
+
   function applyTheme(theme) {
     body.setAttribute('data-theme', theme);
+
     const toggle = document.querySelector('.theme-toggle');
     const icon = toggle ? toggle.querySelector('.theme-icon') : null;
+
     if (icon) {
       icon.textContent = theme === 'dark' ? '🌙' : '☀️';
     }
-    localStorage.setItem('mathly-theme', theme);
+
+    localStorage.setItem(THEME_KEY, theme);
   }
 
   function getCurrentPage() {
@@ -108,19 +122,23 @@
     const currentPage = getCurrentPage();
     const pageList = currentPage === 'index.html' ? ['index.html', ...lessonPages] : lessonPages;
     const currentIndex = pageList.indexOf(currentPage);
+
     const nextPage = currentIndex >= 0 && currentIndex < pageList.length - 1
       ? pageList[currentIndex + 1]
-      : currentPage === 'index.html' ? 'pages/introducing-numbers.html' : lessonPages[0];
+      : currentPage === 'index.html'
+        ? 'pages/introducing-numbers.html'
+        : lessonPages[0];
 
     if (currentPage === 'index.html') {
       return 'pages/' + nextPage.replace('index.html', 'introducing-numbers.html');
     }
 
-    return currentPage === 'index.html' ? nextPage : '../pages/' + nextPage;
+    return '../pages/' + nextPage;
   }
 
   function ensureControls() {
     let wrapper = document.querySelector('.page-tools');
+
     if (!wrapper) {
       wrapper = document.createElement('div');
       wrapper.className = 'page-tools';
@@ -128,6 +146,7 @@
     }
 
     let toggle = document.querySelector('.theme-toggle');
+
     if (!toggle) {
       toggle = document.createElement('button');
       toggle.type = 'button';
@@ -142,6 +161,7 @@
     }
 
     let nextButton = document.querySelector('.page-next-btn');
+
     if (!nextButton) {
       nextButton = document.createElement('a');
       nextButton.className = 'page-next-btn';
@@ -157,10 +177,10 @@
   }
 
   const toggle = ensureControls();
-  applyTheme(savedTheme);
+  applyTheme(getSavedTheme());
 
   toggle.addEventListener('click', function () {
-    const currentTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    applyTheme(currentTheme);
+    const nextTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(nextTheme);
   });
 })();
