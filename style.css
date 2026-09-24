@@ -406,6 +406,17 @@ body .theme-toggle {
     color: var(--button-text) !important;
 }
 
+body:not([data-theme="dark"]) .theme-toggle {
+    color: #0b1320 !important;
+}
+
+body[data-theme="dark"] .page-next-btn,
+body[data-theme="dark"] .theme-toggle,
+body[data-theme="dark"] .btn-dark,
+body[data-theme="dark"] .btn-primary {
+    color: #0b1320 !important;
+}
+
 body .theme-toggle,
 body .page-next-btn {
     display: inline-flex;
