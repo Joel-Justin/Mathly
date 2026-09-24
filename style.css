@@ -406,20 +406,43 @@ body .theme-toggle {
     color: var(--button-text) !important;
 }
 
+body .theme-toggle,
+body .page-next-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
 body .theme-toggle {
     position: fixed;
     right: 22px;
     top: 20px;
     z-index: 99;
     width: 56px;
-    height: 38px;
-    border-radius: 999px;
     border: 1px solid var(--border) !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    box-shadow: var(--shadow);
+}
+
+body .page-next-btn {
+    position: fixed;
+    right: 92px;
+    top: 20px;
+    z-index: 99;
+    padding: 0 18px;
+    color: var(--button-text) !important;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border: 0;
+}
+
+body .theme-toggle:hover,
+body .page-next-btn:hover {
+    transform: translateY(-1px);
 }
 
 body .theme-icon {
@@ -429,8 +452,11 @@ body .theme-icon {
 body .page-tools {
     position: fixed;
     top: 18px;
-    left: 18px;
+    right: 18px;
     z-index: 99;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 body .page-card a,
