@@ -107,8 +107,208 @@
                     Whether you are a student, parent, or teacher, our collection of lessons and guided resources is designed to make maths accessible, engaging, and rewarding.
                 </p>
             </section>
+
+            <section class="study-game-panel" aria-label="Study game and theory">
+                <div class="study-game-top">
+                    <div class="study-game-header">
+                        <h3>Study mode</h3>
+                    </div>
+
+                    <div class="study-toggle" role="tablist" aria-label="Study mode switcher">
+                        <button class="active" type="button" data-mode="theory" aria-selected="true">Theory</button>
+                        <button type="button" data-mode="game" aria-selected="false">Game</button>
+                    </div>
+                </div>
+
+                <div class="study-panel active" data-panel="theory">
+                    <div class="theory-box">
+                        <article class="theory-card">
+                            <h4>Fractions</h4>
+                            <p>A fraction shows a part of a whole. The top number is the numerator and the bottom number is the denominator.</p>
+                            <p>Example: 3/4 means 3 out of 4 equal parts.</p>
+                        </article>
+
+                        <article class="theory-card">
+                            <h4>Algebra</h4>
+                            <p>Algebra uses letters to stand for unknown values. It helps you describe patterns and solve equations.</p>
+                            <p>Example: x + 5 = 12 means x = 7.</p>
+                        </article>
+
+                        <article class="theory-card">
+                            <h4>Geometry</h4>
+                            <p>The angles in a triangle always add up to 180°. This simple fact helps solve many angle problems.</p>
+                            <p>Example: if two angles are 50° and 70°, the third angle is 60°.</p>
+                        </article>
+
+                        <article class="theory-card">
+                            <h4>Percentages</h4>
+                            <p>A percentage compares a number to 100. It is another way to show fractions and decimals.</p>
+                            <p>Example: 25% = 25/100 = 0.25.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="study-panel" data-panel="game">
+                    <div class="game-shell">
+                        <div class="game-status">
+                            <span id="gameScore">Score: 0</span>
+                            <span id="gameProgress">Question 1 / 4</span>
+                        </div>
+
+                        <div class="quiz-card">
+                            <h4 id="quizQuestion">Question text</h4>
+                            <div class="answer-list" id="answerList"></div>
+                            <div class="game-feedback" id="gameFeedback"></div>
+                            <div class="quiz-actions">
+                                <button class="quiz-button secondary" type="button" id="restartQuiz">Restart</button>
+                                <button class="quiz-button" type="button" id="nextQuestion">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
+
+    <script>
+        const studyQuestions = [
+            {
+                question: 'What is 3/4 of 20?',
+                choices: ['10', '12', '15', '18'],
+                answer: '15',
+                explanation: '3/4 of 20 means 20 ÷ 4 = 5, then 5 × 3 = 15.'
+            },
+            {
+                question: 'Solve x + 7 = 13',
+                choices: ['4', '5', '6', '7'],
+                answer: '6',
+                explanation: 'Subtract 7 from both sides: x = 13 - 7 = 6.'
+            },
+            {
+                question: 'The angles of a triangle are 40°, 60°, and ?',
+                choices: ['70°', '80°', '90°', '100°'],
+                answer: '80°',
+                explanation: 'A triangle has 180° total, so 180 - 40 - 60 = 80°.'
+            },
+            {
+                question: 'What is 25% of 80?',
+                choices: ['15', '20', '25', '30'],
+                answer: '20',
+                explanation: '25% is one quarter, and 80 ÷ 4 = 20.'
+            }
+        ];
+
+        let currentStudyMode = 'theory';
+        let currentQuestionIndex = 0;
+        let currentScore = 0;
+        let answered = false;
+
+        const modeButtons = document.querySelectorAll('[data-mode]');
+        const studyPanels = document.querySelectorAll('.study-panel');
+
+        modeButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                currentStudyMode = button.dataset.mode;
+
+                modeButtons.forEach((btn) => {
+                    const active = btn === button;
+                    btn.classList.toggle('active', active);
+                    btn.setAttribute('aria-selected', String(active));
+                });
+
+                studyPanels.forEach((panel) => {
+                    panel.classList.toggle('active', panel.dataset.panel === currentStudyMode);
+                });
+            });
+        });
+
+        const quizQuestion = document.getElementById('quizQuestion');
+        const answerList = document.getElementById('answerList');
+        const gameFeedback = document.getElementById('gameFeedback');
+        const gameScore = document.getElementById('gameScore');
+        const gameProgress = document.getElementById('gameProgress');
+        const nextQuestionButton = document.getElementById('nextQuestion');
+        const restartQuizButton = document.getElementById('restartQuiz');
+
+        function renderQuestion() {
+            const question = studyQuestions[currentQuestionIndex];
+            answered = false;
+            gameFeedback.textContent = '';
+            quizQuestion.textContent = question.question;
+            gameProgress.textContent = `Question ${currentQuestionIndex + 1} / ${studyQuestions.length}`;
+            answerList.innerHTML = '';
+
+            question.choices.forEach((choice) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'answer-option';
+                button.textContent = choice;
+                button.addEventListener('click', () => checkAnswer(button, choice));
+                answerList.appendChild(button);
+            });
+        }
+
+        function checkAnswer(button, choice) {
+            if (answered) return;
+            answered = true;
+
+            const question = studyQuestions[currentQuestionIndex];
+            const buttons = answerList.querySelectorAll('.answer-option');
+
+            buttons.forEach((item) => {
+                const isCorrect = item.textContent === question.answer;
+                item.classList.toggle('correct', isCorrect);
+                item.disabled = true;
+            });
+
+            if (choice === question.answer) {
+                currentScore += 1;
+                gameScore.textContent = `Score: ${currentScore}`;
+                button.classList.add('correct');
+                gameFeedback.textContent = 'Correct! ' + question.explanation;
+            } else {
+                button.classList.add('wrong');
+                gameFeedback.textContent = 'Not quite. ' + question.explanation;
+            }
+        }
+
+        function nextQuestion() {
+            if (!answered) {
+                gameFeedback.textContent = 'Choose an answer before moving on.';
+                return;
+            }
+
+            currentQuestionIndex += 1;
+            if (currentQuestionIndex >= studyQuestions.length) {
+                const finalScore = currentScore;
+                quizQuestion.textContent = `Quiz complete! You scored ${finalScore} out of ${studyQuestions.length}.`;
+                answerList.innerHTML = '';
+                gameProgress.textContent = 'Final score';
+                gameFeedback.textContent = finalScore === studyQuestions.length ? 'Excellent work! You nailed every question.' : 'Nice effort — try again to improve your score.';
+                nextQuestionButton.textContent = 'Play again';
+                nextQuestionButton.onclick = restartQuiz;
+                return;
+            }
+
+            nextQuestionButton.textContent = 'Next';
+            nextQuestionButton.onclick = null;
+            renderQuestion();
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            currentScore = 0;
+            answered = false;
+            nextQuestionButton.textContent = 'Next';
+            nextQuestionButton.onclick = null;
+            gameScore.textContent = 'Score: 0';
+            renderQuestion();
+        }
+
+        nextQuestionButton.addEventListener('click', nextQuestion);
+        restartQuizButton.addEventListener('click', restartQuiz);
+        renderQuestion();
+    </script>
 
     <!-- Bootstrap and shared page behaviour -->
     <script type="application/json" id="mathly-topics-data">
