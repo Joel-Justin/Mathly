@@ -171,37 +171,104 @@
     </div>
 
     <script>
-        const studyQuestions = [
-            {
-                question: 'What is 3/4 of 20?',
-                choices: ['10', '12', '15', '18'],
-                answer: '15',
-                explanation: '3/4 of 20 means 20 ÷ 4 = 5, then 5 × 3 = 15.'
-            },
-            {
-                question: 'Solve x + 7 = 13',
-                choices: ['4', '5', '6', '7'],
-                answer: '6',
-                explanation: 'Subtract 7 from both sides: x = 13 - 7 = 6.'
-            },
-            {
-                question: 'The angles of a triangle are 40°, 60°, and ?',
-                choices: ['70°', '80°', '90°', '100°'],
-                answer: '80°',
-                explanation: 'A triangle has 180° total, so 180 - 40 - 60 = 80°.'
-            },
-            {
-                question: 'What is 25% of 80?',
-                choices: ['15', '20', '25', '30'],
-                answer: '20',
-                explanation: '25% is one quarter, and 80 ÷ 4 = 20.'
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function shuffleArray(items) {
+            const nextItems = [...items];
+            for (let index = nextItems.length - 1; index > 0; index -= 1) {
+                const randomIndex = Math.floor(Math.random() * (index + 1));
+                [nextItems[index], nextItems[randomIndex]] = [nextItems[randomIndex], nextItems[index]];
             }
-        ];
+            return nextItems;
+        }
+
+        function buildChoiceSet(correctValue, variations) {
+            const values = [String(correctValue)];
+            const seen = new Set(values);
+
+            while (values.length < 4) {
+                const candidate = variations[Math.floor(Math.random() * variations.length)];
+                const value = String(candidate);
+
+                if (!seen.has(value)) {
+                    values.push(value);
+                    seen.add(value);
+                }
+            }
+
+            return shuffleArray(values);
+        }
+
+        function buildStudyQuestions() {
+            const templates = [
+                () => {
+                    const denominator = randomInt(2, 5);
+                    const numerator = randomInt(1, denominator - 1);
+                    const whole = denominator * randomInt(2, 12);
+                    const answer = (whole * numerator) / denominator;
+
+                    return {
+                        question: `What is ${numerator}/${denominator} of ${whole}?`,
+                        choices: buildChoiceSet(answer, [answer - 4, answer + 3, answer + 8, answer - 6, answer + 12, answer - 10]),
+                        answer: String(answer),
+                        explanation: `${numerator}/${denominator} of ${whole} means ${whole} ÷ ${denominator} = ${whole / denominator}, then × ${numerator} = ${answer}.`
+                    };
+                },
+                () => {
+                    const value = randomInt(4, 18);
+                    const addend = randomInt(2, 12);
+                    const answer = value - addend;
+
+                    return {
+                        question: `Solve x + ${addend} = ${value}`,
+                        choices: buildChoiceSet(answer, [answer - 5, answer + 3, answer + 7, answer - 2, answer + 10]),
+                        answer: String(answer),
+                        explanation: `Subtract ${addend} from both sides: x = ${value} - ${addend} = ${answer}.`
+                    };
+                },
+                () => {
+                    let firstAngle = randomInt(25, 70);
+                    let secondAngle = randomInt(25, 80);
+                    let thirdAngle = 180 - firstAngle - secondAngle;
+
+                    while (thirdAngle <= 0 || thirdAngle > 120) {
+                        firstAngle = randomInt(25, 70);
+                        secondAngle = randomInt(25, 80);
+                        thirdAngle = 180 - firstAngle - secondAngle;
+                    }
+
+                    return {
+                        question: `The angles of a triangle are ${firstAngle}°, ${secondAngle}°, and ?`,
+                        choices: buildChoiceSet(thirdAngle, [thirdAngle - 8, thirdAngle + 5, thirdAngle + 15, thirdAngle - 12, thirdAngle + 20]),
+                        answer: `${thirdAngle}°`,
+                        explanation: `A triangle has 180° total, so 180 - ${firstAngle} - ${secondAngle} = ${thirdAngle}°.`
+                    };
+                },
+                () => {
+                    const amount = randomInt(20, 200);
+                    const percent = [10, 20, 25, 50, 75][randomInt(0, 4)];
+                    const answer = Math.round((amount * percent) / 100);
+
+                    return {
+                        question: `What is ${percent}% of ${amount}?`,
+                        choices: buildChoiceSet(answer, [answer - 9, answer + 6, answer + 12, answer - 5, answer + 18]),
+                        answer: String(answer),
+                        explanation: `${percent}% is ${percent / 100}, so ${amount} × ${percent / 100} = ${answer}.`
+                    };
+                }
+            ];
+
+            return Array.from({ length: 4 }, () => templates[Math.floor(Math.random() * templates.length)]());
+        }
 
         let currentStudyMode = 'theory';
         let currentQuestionIndex = 0;
         let currentScore = 0;
         let answered = false;
+        let quizCompleted = false;
+        let studyQuestions = buildStudyQuestions();
 
         const modeButtons = document.querySelectorAll('[data-mode]');
         const studyPanels = document.querySelectorAll('.study-panel');
@@ -272,7 +339,22 @@
             }
         }
 
+        function finishQuiz() {
+            const finalScore = currentScore;
+            quizCompleted = true;
+            quizQuestion.textContent = `Quiz complete! You scored ${finalScore} out of ${studyQuestions.length}.`;
+            answerList.innerHTML = '';
+            gameProgress.textContent = 'Final score';
+            gameFeedback.textContent = finalScore === studyQuestions.length ? 'Excellent work! You nailed every question.' : 'Nice effort — try again to improve your score.';
+            nextQuestionButton.textContent = 'Play again';
+        }
+
         function nextQuestion() {
+            if (quizCompleted) {
+                restartQuiz();
+                return;
+            }
+
             if (!answered) {
                 gameFeedback.textContent = 'Choose an answer before moving on.';
                 return;
@@ -280,27 +362,21 @@
 
             currentQuestionIndex += 1;
             if (currentQuestionIndex >= studyQuestions.length) {
-                const finalScore = currentScore;
-                quizQuestion.textContent = `Quiz complete! You scored ${finalScore} out of ${studyQuestions.length}.`;
-                answerList.innerHTML = '';
-                gameProgress.textContent = 'Final score';
-                gameFeedback.textContent = finalScore === studyQuestions.length ? 'Excellent work! You nailed every question.' : 'Nice effort — try again to improve your score.';
-                nextQuestionButton.textContent = 'Play again';
-                nextQuestionButton.onclick = restartQuiz;
+                finishQuiz();
                 return;
             }
 
             nextQuestionButton.textContent = 'Next';
-            nextQuestionButton.onclick = null;
             renderQuestion();
         }
 
         function restartQuiz() {
+            studyQuestions = buildStudyQuestions();
             currentQuestionIndex = 0;
             currentScore = 0;
             answered = false;
+            quizCompleted = false;
             nextQuestionButton.textContent = 'Next';
-            nextQuestionButton.onclick = null;
             gameScore.textContent = 'Score: 0';
             renderQuestion();
         }
