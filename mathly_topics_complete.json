@@ -1,0 +1,111 @@
+{
+  "site": {
+    "name": "Mathly",
+    "tagline": "Learn with confidence",
+    "description": "Mathly brings together clear lessons, practical examples, and engaging topics to help every learner grow from basics to advanced problem solving."
+  },
+  "categories": [
+    {
+      "category": "Home",
+      "topics": [
+        { "title": "Home", "page": "index.html" }
+      ]
+    },
+    {
+      "category": "Number & Arithmetic",
+      "topics": [
+        { "title": "Number overview", "page": "pages/number-arithmetic.html" },
+        { "title": "Introducing numbers", "page": "pages/introducing-numbers.html" },
+        { "title": "Decimals", "page": "pages/decimals.html" },
+        { "title": "Written addition and subtraction", "page": "pages/written-addition-and-subtraction.html" },
+        { "title": "Adding and subtracting decimals", "page": "pages/adding-and-subtracting-decimals.html" },
+        { "title": "Negative numbers", "page": "pages/negative-numbers.html" },
+        { "title": "Methods of multiplication", "page": "pages/methods-of-multiplication.html" },
+        { "title": "Methods of division", "page": "pages/methods-of-division.html" },
+        { "title": "Factors and multiples", "page": "pages/factors-and-multiples.html" },
+        { "title": "Order of operations", "page": "pages/order-of-operations.html" }
+      ]
+    },
+    {
+      "category": "Geometry & Shapes",
+      "topics": [
+        { "title": "Geometry overview", "page": "pages/geometry-shapes.html" },
+        { "title": "Angles", "page": "pages/angles.html" },
+        { "title": "Angle facts", "page": "pages/angle-facts.html" },
+        { "title": "Angles and parallel lines", "page": "pages/angles-and-parallel-lines.html" },
+        { "title": "Measuring and drawing angles", "page": "pages/measuring-and-drawing-angles.html" },
+        { "title": "Symmetry", "page": "pages/symmetry.html" },
+        { "title": "Properties of triangles", "page": "pages/properties-of-triangles.html" },
+        { "title": "Properties of quadrilaterals", "page": "pages/properties-of-quadrilaterals.html" },
+        { "title": "Interior angles of a polygon", "page": "pages/interior-angles-of-a-polygon.html" },
+        { "title": "Properties of a circle", "page": "pages/properties-of-a-circle.html" }
+      ]
+    },
+    {
+      "category": "Fractions, Decimals & Percentages",
+      "topics": [
+        { "title": "Fractions overview", "page": "pages/fractions-decimals-percentages.html" },
+        { "title": "Fractions", "page": "pages/fractions.html" },
+        { "title": "Improper fractions and mixed numbers", "page": "pages/improper-fractions-and-mixed-numbers.html" },
+        { "title": "Comparing fractions", "page": "pages/comparing-fractions.html" },
+        { "title": "Adding and subtracting fractions", "page": "pages/adding-and-subtracting-fractions.html" },
+        { "title": "Percentages", "page": "pages/percentages.html" },
+        { "title": "Fractions, decimals, and percentages", "page": "pages/fractions-decimals-and-percentages.html" },
+        { "title": "Finding the percentage change", "page": "pages/finding-the-percentage-change.html" },
+        { "title": "Growth and decay", "page": "pages/growth-and-decay.html" },
+        { "title": "Compound interest", "page": "pages/compound-interest.html" }
+      ]
+    },
+    {
+      "category": "Measurement",
+      "topics": [
+        { "title": "Measurement overview", "page": "pages/measurement.html" },
+        { "title": "Metric units of measure and time", "page": "pages/metric-units-of-measure-and-time.html" },
+        { "title": "Imperial units of measure", "page": "pages/imperial-units-of-measure.html" },
+        { "title": "Converting units of measure", "page": "pages/converting-units-of-measure.html" },
+        { "title": "Perimeter and area", "page": "pages/perimeter-and-area.html" },
+        { "title": "Area formulas", "page": "pages/area-formulas.html" },
+        { "title": "Circumference and area of a circle", "page": "pages/circumference-and-area-of-a-circle.html" },
+        { "title": "Volume of a cuboid", "page": "pages/volume-of-a-cuboid.html" },
+        { "title": "Surface area of a cuboid", "page": "pages/surface-area-of-a-cuboid.html" },
+        { "title": "Rounding and estimating", "page": "pages/rounding-and-estimating.html" }
+      ]
+    },
+    {
+      "category": "Algebra Basics",
+      "topics": [
+        { "title": "Algebra overview", "page": "pages/algebra-basics.html" },
+        { "title": "Algebraic terms", "page": "pages/algebraic-terms.html" },
+        { "title": "Expressions", "page": "pages/expressions.html" },
+        { "title": "Substitution", "page": "pages/substitution.html" },
+        { "title": "Indices in algebra", "page": "pages/indices-in-algebra.html" },
+        { "title": "Expanding brackets", "page": "pages/expanding-brackets.html" },
+        { "title": "Formulas", "page": "pages/formulas.html" },
+        { "title": "Rearranging formulas", "page": "pages/rearranging-formulas.html" }
+      ]
+    },
+    {
+      "category": "Powers & Calculations",
+      "topics": [
+        { "title": "Powers overview", "page": "pages/powers-calculations.html" },
+        { "title": "Higher powers and estimating powers", "page": "pages/higher-powers-and-estimating-powers.html" },
+        { "title": "Roots", "page": "pages/roots.html" },
+        { "title": "Negative powers", "page": "pages/negative-powers.html" },
+        { "title": "Standard form", "page": "pages/standard-form.html" },
+        { "title": "Exact calculations", "page": "pages/exact-calculations.html" }
+      ]
+    },
+    {
+      "category": "Equations & Graphs",
+      "topics": [
+        { "title": "Graphs overview", "page": "pages/equations-graphs.html" },
+        { "title": "Equations", "page": "pages/equations.html" },
+        { "title": "Solving simple equations", "page": "pages/solving-simple-equations.html" },
+        { "title": "Simultaneous equations", "page": "pages/simultaneous-equations.html" },
+        { "title": "The coordinate grid", "page": "pages/the-coordinate-grid.html" },
+        { "title": "Linear graphs", "page": "pages/linear-graphs.html" },
+        { "title": "Equation of a straight line", "page": "pages/equation-of-a-straight-line.html" }
+      ]
+    }
+  ]
+}
