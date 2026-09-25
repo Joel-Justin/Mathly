@@ -1,0 +1,21 @@
+body:not(.home) {
+  --bg:#f8f9f5; --bg-accent:#eef3e7; --panel-strong:#fff; --panel-soft:#f0f3ec;
+  --text:#253e35; --muted:#6c786f; --primary:#326750; --primary-dark:#24513e;
+  --border:#e1e6dd; --page-card:#fff; --lesson-box:#f2f6eb; --lesson-line:#79924e;
+  background:radial-gradient(circle at top left,var(--bg-accent),var(--bg) 46%) !important;
+  color:var(--text) !important; font-family:"Inter",Arial,sans-serif !important;
+}
+body:not(.home)[data-theme="dark"] { --bg:#16231e; --bg-accent:#1e3328; --panel-strong:#213329; --panel-soft:#293d30; --text:#e6eee4; --muted:#a5b6a8; --primary:#9dccae; --primary-dark:#80b496; --border:#34473b; --page-card:#213329; --lesson-box:#293d30; --lesson-line:#9dccae; }
+body:not(.home) .container.py-5, body:not(.home) .lesson-shell { max-width:1000px; padding:38px 22px 72px !important; }
+body:not(.home) .container.py-5>.btn-dark, body:not(.home) .home-link { display:inline-flex; align-items:center; gap:8px; min-height:38px; margin-bottom:18px !important; padding:.65rem 1rem !important; border:1px solid var(--border) !important; border-radius:8px !important; background:var(--panel-strong) !important; color:var(--primary) !important; font-size:.72rem; font-weight:700; box-shadow:none !important; }
+body:not(.home) .container.py-5>.btn-dark::before, body:not(.home) .home-link::before { content:"←"; font-size:1rem; }
+body:not(.home) .page-card { margin:0 !important; padding:clamp(1.6rem,4vw,3.3rem) !important; border:1px solid var(--border) !important; border-radius:18px !important; background:var(--page-card) !important; box-shadow:0 16px 38px rgba(37,62,53,.08) !important; }
+body:not(.home) .page-card h1 { max-width:760px; margin-bottom:.75rem; color:var(--text) !important; font-family:"Lora",Georgia,serif; font-size:clamp(2.2rem,5vw,3.6rem); font-weight:500; letter-spacing:-.055em; }
+body:not(.home) .page-card .lead { max-width:720px; margin-bottom:2rem; color:var(--muted) !important; font-size:1rem; line-height:1.85; }
+body:not(.home) .page-card h3, body:not(.home) .page-card h4 { color:var(--text) !important; font-weight:700; letter-spacing:-.02em; }
+body:not(.home) .page-card p, body:not(.home) .page-card li { color:var(--text) !important; line-height:1.85; }
+body:not(.home) .lesson-box { margin:1.7rem 0 !important; padding:1.25rem 1.35rem !important; border:1px solid var(--border) !important; border-left:4px solid var(--lesson-line) !important; border-radius:11px !important; background:var(--lesson-box) !important; }
+body:not(.home) .page-card .row { margin-top:1.6rem; margin-bottom:1.6rem; }
+body:not(.home) .page-card .row>[class*="col-"] { padding:1.1rem 1.25rem; }
+body:not(.home) .page-card .row>[class*="col-"]+[class*="col-"] { border-left:1px solid var(--border); }
+@media(max-width:767px) { body:not(.home) .container.py-5,body:not(.home) .lesson-shell{padding:25px 15px 52px !important} body:not(.home) .page-card{padding:1.35rem !important} body:not(.home) .page-card h1{font-size:2.25rem} body:not(.home) .page-card .row>[class*="col-"]+[class*="col-"]{border-left:0;border-top:1px solid var(--border);margin-top:.5rem} }

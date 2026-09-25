@@ -96,8 +96,16 @@
     'written-addition-and-subtraction.html'
   ];
 
+  if (!body.classList.contains('home') && !document.querySelector('link[data-lesson-theme]')) {
+    const lessonTheme = document.createElement('link');
+    lessonTheme.rel = 'stylesheet';
+    lessonTheme.href = '../lesson.css?v=2';
+    lessonTheme.dataset.lessonTheme = 'true';
+    document.head.appendChild(lessonTheme);
+  }
+
   function getSavedTheme() {
-    return localStorage.getItem(THEME_KEY) || 'light';
+    try { return localStorage.getItem(THEME_KEY) === 'dark' ? 'dark' : 'light'; } catch { return 'light'; }
   }
 
   function applyTheme(theme) {
@@ -110,7 +118,8 @@
       icon.textContent = theme === 'dark' ? '🌙' : '☀️';
     }
 
-    localStorage.setItem(THEME_KEY, theme);
+    if (toggle) { toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'); }
+    try { localStorage.setItem(THEME_KEY, theme); } catch { /* Theme still works without storage. */ }
   }
 
   function getCurrentPage() {
@@ -159,6 +168,8 @@
       toggle.appendChild(icon);
       wrapper.appendChild(toggle);
     }
+
+    if (getCurrentPage() === 'index.html') return toggle;
 
     let nextButton = document.querySelector('.page-next-btn');
 

@@ -7,13 +7,14 @@ Mathly is a static mathematics learning website built with HTML, CSS, and Bootst
 This project helps students learn key maths topics through:
 
 - simple lesson pages
-- topic-based dropdown navigation
+- searchable lessons and subject filters
 - clear examples and quick revision rules
 - practice questions for each topic
 
 ## Project structure
 
-- [index.html](index.html) – landing page and dropdown menu
+- [index.html](index.html) – landing page and lesson catalog
+- [home.css](home.css) and [home.js](home.js) – responsive homepage, search, and subject filters
 - [style.css](style.css) – shared styling for the site
 - [pages](pages) – topic lesson pages
 - [bootstrap css](bootstrap%20css) – Bootstrap CSS files
@@ -38,7 +39,7 @@ Each section links to dedicated HTML lesson pages for individual topics.
 Open the project in a browser or run a local server from the project folder:
 
 ```bash
-cd "C:\Users\joelj\OneDrive\Desktop\mathly"
+cd "C:\Projects\Mathly"
 python -m http.server 8000
 ```
 
@@ -55,3 +56,7 @@ This project is a lightweight static website, so no package installation is requ
 ## Repository connection
 
 This repository is connected as a local static site project for maths learning content. The core entry point is the homepage, and the lesson materials are organised under the pages directory.
+
+## Validation
+
+Run `node scripts/check-home.cjs` to verify generated quiz answers, answer choices, and catalog links. No dependencies are required.

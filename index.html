@@ -1,122 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathly</title>
-
-    <!-- Fonts and layout styling -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="bootstrap css/bootstrap.css">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Find your way through maths with clear lessons, worked examples, and quick practice. Explore seven subjects at your own pace.">
+<title>Mathly — A little practice. A lot of possibility.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="bootstrap css/bootstrap.css"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="home.css">
 </head>
-<body data-theme="light">
-    <div class="page-shell">
-        <header class="topbar">
-            <div class="brand-wrap">
-                <div class="brand-mark">M</div>
-                <div>
-                    <span class="eyebrow">Learn with confidence</span>
-                    <h1>Mathly</h1>
-                </div>
-            </div>
-
-            <!-- Theme toggle for light/dark mode -->
-            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
-                <span class="theme-icon">☀️</span>
-            </button>
-        </header>
-
-        <!-- Main subject navigation -->
-        <nav class="topic-nav" aria-label="Math topics navigation">
-            <div id="topicNavContainer" class="row g-3"></div>
-        </nav>
-
-        <main class="content">
-            <section class="hero">
-                <div class="hero-copy">
-                    <p class="kicker">Your maths success starts here</p>
-                    <h2>Learn smarter, solve faster, and build real confidence.</h2>
-                    <p class="intro">
-                        Mathly brings together clear lessons, practical examples, and engaging topics to help every learner grow from basics to advanced problem solving.
-                    </p>
-                    <div class="cta-row">
-                        <a href="#topics" class="primary-btn">Explore lessons</a>
-                        <a href="pages/introducing-numbers.html" class="secondary-btn">Start learning</a>
-                    </div>
-                </div>
-
-                <div class="hero-panel" aria-label="Learning stats">
-                    <div class="hero-panel-header">
-                        <span class="mini-label">Built for learners</span>
-                        <strong>Clear progress</strong>
-                    </div>
-
-                    <div class="stat-card">
-                        <strong>120+</strong>
-                        <span>Topics</span>
-                    </div>
-                    <div class="stat-card">
-                        <strong>7</strong>
-                        <span>Core strands</span>
-                    </div>
-                    <div class="stat-card highlight">
-                        <strong>100%</strong>
-                        <span>Practice-ready</span>
-                    </div>
-
-                    <ul class="hero-checklist">
-                        <li>Step-by-step explanations</li>
-                        <li>Topic-based learning flow</li>
-                        <li>Simple practice confidence</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="feature-grid" id="topics">
-                <article class="feature-card">
-                    <div class="icon">∑</div>
-                    <h3>Number Skills</h3>
-                    <p>Build confidence with arithmetic, factors, powers, and problem solving.</p>
-                </article>
-
-                <article class="feature-card">
-                    <div class="icon">△</div>
-                    <h3>Geometry</h3>
-                    <p>Explore angles, shapes, symmetry, and measurements with visual clarity.</p>
-                </article>
-
-                <article class="feature-card">
-                    <div class="icon">⅟</div>
-                    <h3>Fractions & Percentages</h3>
-                    <p>Understand proportional thinking through engaging, real-world examples.</p>
-                </article>
-
-                <article class="feature-card">
-                    <div class="icon">x²</div>
-                    <h3>Algebra & Graphs</h3>
-                    <p>Move from expressions to equations and graphs with confidence.</p>
-                </article>
-            </section>
-
-            <section class="welcome-panel">
-                <p>
-                    Welcome to Mathly — your all-in-one destination for mastering mathematics with clarity and confidence.
-                    Whether you are a student, parent, or teacher, our collection of lessons and guided resources is designed to make maths accessible, engaging, and rewarding.
-                </p>
-            </section>
-
-            <section class="study-game-panel" aria-label="Study game and theory">
+<body class="home" data-theme="light">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="wordmark" href="index.html" aria-label="Mathly home"><span class="logo-symbol">m<span>·</span></span>mathly<span class="brand-dot">.</span></a>
+<nav class="header-nav" aria-label="Main navigation"><a class="selected" href="#topics">Explore lessons</a><a href="#practice">Practice</a></nav>
+<div class="header-actions"><span class="header-note">Small steps. Big discoveries.</span><button class="theme-toggle" type="button" aria-label="Toggle theme"><span class="theme-icon">☀</span></button></div>
+</div></header>
+<main id="main" class="home-main">
+<section class="welcome-heading"><div><p class="section-eyebrow">YOUR SPACE TO FIGURE THINGS OUT</p><h1>Let’s make maths <em>make sense.</em></h1><p>One idea, one small win, one step forward at a time.</p></div><span class="welcome-doodle" aria-hidden="true">✳</span></section>
+<section class="learning-hero">
+<div class="hero-text"><span class="pill"><span></span> A little practice. A lot of possibility.</span><h2>Big ideas start<br>with a little <em>curiosity.</em></h2><p>Clear explanations, helpful examples, and space to practise.<br class="desktop-break"> Find your starting point. We’ll take it from there.</p><a class="start-button" href="pages/introducing-numbers.html">Start with the basics <span>↗</span></a><div class="hero-footnote"><span>✓</span> Learn at your pace <span>✓</span> No sign-up needed</div></div>
+<div class="math-art" role="img" aria-label="An illustrated maths notebook with a triangle, a fraction, and an equation">
+<span class="art-star">✳</span><span class="art-plus">+</span><div class="notebook"><div class="notebook-label">A FRESH PERSPECTIVE</div><svg viewBox="0 0 250 170" aria-hidden="true"><path d="M40 140 L120 25 L210 140 Z" fill="#f0d7a3" fill-opacity=".5" stroke="#346b56" stroke-width="3"/><path d="M56 117 Q67 124 69 140 M183 140 Q187 122 195 120 M108 43 Q121 52 135 44" fill="none" stroke="#346b56" stroke-width="2"/><text x="74" y="130">60°</text><text x="155" y="130">60°</text><text x="105" y="73">60°</text></svg><div class="notebook-caption">It all adds up. <span>180°</span></div></div><div class="fraction-note"><span>½</span><span>one step<br>at a time.</span></div><div class="equation-note">x + 5 = 12 <span>→</span> x = 7 <b>✓</b></div><span class="art-spark">✧</span>
+</div></section>
+<section id="topics" class="topic-library"><div class="section-heading"><div><p class="section-eyebrow">FOLLOW YOUR CURIOSITY</p><h2>What will you explore?</h2></div><span class="library-count">7 subjects · <span id="lessonCount"></span> lessons</span></div>
+<div class="library-toolbar"><div class="filter-list" role="group" aria-label="Filter subjects"><button class="active" data-filter="all" aria-pressed="true">All subjects</button><button data-filter="numbers" aria-pressed="false">Numbers</button><button data-filter="shapes" aria-pressed="false">Shapes & measures</button><button data-filter="algebra" aria-pressed="false">Algebra & graphs</button></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="lessonSearch" type="search" placeholder="Find a lesson…" aria-label="Find a lesson"></label></div>
+<div id="subjectGrid" class="subject-grid"></div><p id="emptyResults" class="empty-results" hidden>No lessons found. Try “fractions”, “angles”, or “equations”.</p><p id="searchStatus" class="visually-hidden" aria-live="polite"></p>
+</section>
+<section class="encouragement"><span aria-hidden="true">✧</span><div><h3>You don’t have to get it right the first time.</h3><p>That’s what learning is for. Try a quick quiz and see what sticks.</p></div><a href="#practice">Give it a go <span>→</span></a></section>
+            <section class="study-game-panel" id="practice" aria-label="Study game and theory">
                 <div class="study-game-top">
                     <div class="study-game-header">
-                        <h3>Study mode</h3>
+                        <p class="section-eyebrow">A LITTLE PRACTICE, EVERY DAY</p><h3>Make it click.</h3>
                     </div>
 
-                    <div class="study-toggle" role="tablist" aria-label="Study mode switcher">
-                        <button class="active" type="button" data-mode="theory" aria-selected="true">Theory</button>
-                        <button type="button" data-mode="game" aria-selected="false">Game</button>
+                    <div class="study-toggle" role="group" aria-label="Study mode switcher">
+                        <button class="active" type="button" data-mode="theory" aria-pressed="true">Theory</button>
+                        <button type="button" data-mode="game" aria-pressed="false">Quick quiz</button>
                     </div>
                 </div>
 
@@ -158,7 +77,7 @@
                         <div class="quiz-card">
                             <h4 id="quizQuestion">Question text</h4>
                             <div class="answer-list" id="answerList"></div>
-                            <div class="game-feedback" id="gameFeedback"></div>
+                            <div class="game-feedback" id="gameFeedback" aria-live="polite"></div>
                             <div class="quiz-actions">
                                 <button class="quiz-button secondary" type="button" id="restartQuiz">Restart</button>
                                 <button class="quiz-button" type="button" id="nextQuestion">Next</button>
@@ -167,9 +86,7 @@
                     </div>
                 </div>
             </section>
-        </main>
-    </div>
-
+</main><footer class="site-footer"><a class="footer-brand" href="index.html">mathly.</a><span>A little more confident, every day.</span><a href="#main">Back to top ↑</a></footer>
     <script>
         function randomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -242,14 +159,14 @@
                     return {
                         question: `The angles of a triangle are ${firstAngle}°, ${secondAngle}°, and ?`,
                         choices: buildChoiceSet(thirdAngle, [thirdAngle - 8, thirdAngle + 5, thirdAngle + 15, thirdAngle - 12, thirdAngle + 20]),
-                        answer: `${thirdAngle}°`,
+                        answer: String(thirdAngle),
                         explanation: `A triangle has 180° total, so 180 - ${firstAngle} - ${secondAngle} = ${thirdAngle}°.`
                     };
                 },
                 () => {
                     const amount = randomInt(20, 200);
                     const percent = [10, 20, 25, 50, 75][randomInt(0, 4)];
-                    const answer = Math.round((amount * percent) / 100);
+                    const answer = (amount * percent) / 100;
 
                     return {
                         question: `What is ${percent}% of ${amount}?`,
@@ -280,7 +197,7 @@
                 modeButtons.forEach((btn) => {
                     const active = btn === button;
                     btn.classList.toggle('active', active);
-                    btn.setAttribute('aria-selected', String(active));
+                    btn.setAttribute('aria-pressed', String(active));
                 });
 
                 studyPanels.forEach((panel) => {
@@ -386,7 +303,6 @@
         renderQuestion();
     </script>
 
-    <!-- Bootstrap and shared page behaviour -->
     <script type="application/json" id="mathly-topics-data">
     {
       "categories": [
@@ -402,63 +318,4 @@
     }
     </script>
 
-    <script>
-      function renderTopicNav() {
-        const container = document.getElementById('topicNavContainer');
-        const data = JSON.parse(document.getElementById('mathly-topics-data').textContent);
-
-        if (!container || !data || !Array.isArray(data.categories)) return;
-
-        data.categories.forEach((group) => {
-          const col = document.createElement('div');
-          col.className = 'col-lg-2 col-md-4 col-sm-6';
-
-          if (group.category === 'Home') {
-            const homeLink = document.createElement('a');
-            homeLink.href = 'index.html';
-            homeLink.className = 'btn nav-button';
-            homeLink.textContent = 'Home';
-            col.appendChild(homeLink);
-            container.appendChild(col);
-            return;
-          }
-
-          const dropdown = document.createElement('div');
-          dropdown.className = 'dropdown';
-
-          const button = document.createElement('button');
-          button.type = 'button';
-          button.className = 'btn nav-button dropdown-toggle';
-          button.setAttribute('data-bs-toggle', 'dropdown');
-          button.setAttribute('aria-expanded', 'false');
-          button.textContent = group.category;
-
-          const menu = document.createElement('ul');
-          menu.className = 'dropdown-menu';
-
-          (group.topics || []).forEach((topic) => {
-            const item = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = topic.page || '#';
-            link.className = 'dropdown-item';
-            link.textContent = topic.title;
-            item.appendChild(link);
-            menu.appendChild(item);
-          });
-
-          dropdown.appendChild(button);
-          dropdown.appendChild(menu);
-          col.appendChild(dropdown);
-          container.appendChild(col);
-        });
-      }
-
-      renderTopicNav();
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="bootstrap js/bootstrap.js"></script>
-    <script src="theme.js"></script>
-</body>
-</html>
-
+<script src="home.js"></script><script src="theme.js"></script></body></html>
