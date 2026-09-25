@@ -6,8 +6,20 @@ body:not(.home) {
   color:var(--text) !important; font-family:"Inter",Arial,sans-serif !important;
 }
 body:not(.home)[data-theme="dark"] { --bg:#16231e; --bg-accent:#1e3328; --panel-strong:#213329; --panel-soft:#293d30; --text:#e6eee4; --muted:#a5b6a8; --primary:#9dccae; --primary-dark:#80b496; --border:#34473b; --page-card:#213329; --lesson-box:#293d30; --lesson-line:#9dccae; }
+body:not(.home) .lesson-header { border-bottom:1px solid var(--border); background:var(--panel-strong); }
+body:not(.home) .lesson-header-inner { max-width:1000px; margin:auto; min-height:76px; padding:15px 22px; display:flex; align-items:center; gap:22px; }
+body:not(.home) .lesson-wordmark { display:flex; align-items:center; color:var(--text) !important; font-size:1.35rem; font-weight:800; letter-spacing:-.06em; text-decoration:none; }
+body:not(.home) .lesson-logo { position:relative; display:grid; place-items:center; width:29px; height:29px; margin-right:8px; border-radius:8px; background:var(--primary); color:var(--button-text,#fff); font:700 1.45rem Georgia,serif; }
+body:not(.home) .lesson-logo span { position:absolute; top:-7px; right:2px; color:#d5e3a3; font-size:.8rem; }
+body:not(.home) .lesson-dot { color:#739d48; }
+body:not(.home) .lesson-context { display:flex; flex-direction:column; gap:2px; padding-left:22px; border-left:1px solid var(--border); }
+body:not(.home) .lesson-context span { color:var(--muted); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; }
+body:not(.home) .lesson-context strong { color:var(--text); font-size:.78rem; font-weight:600; }
+body:not(.home) .lesson-library-link { margin-left:auto; padding-right:150px; color:var(--primary) !important; font-size:.72rem; font-weight:700; text-decoration:none; }
+body:not(.home) .lesson-library-link span { margin-left:8px; font-size:1rem; }
 body:not(.home) .container.py-5, body:not(.home) .lesson-shell { max-width:1000px; padding:38px 22px 72px !important; }
 body:not(.home) .container.py-5>.btn-dark, body:not(.home) .home-link { display:inline-flex; align-items:center; gap:8px; min-height:38px; margin-bottom:18px !important; padding:.65rem 1rem !important; border:1px solid var(--border) !important; border-radius:8px !important; background:var(--panel-strong) !important; color:var(--primary) !important; font-size:.72rem; font-weight:700; box-shadow:none !important; }
+body:not(.home) .container.py-5>.btn-dark { display:none; }
 body:not(.home) .container.py-5>.btn-dark::before, body:not(.home) .home-link::before { content:"←"; font-size:1rem; }
 body:not(.home) .page-card { margin:0 !important; padding:clamp(1.6rem,4vw,3.3rem) !important; border:1px solid var(--border) !important; border-radius:18px !important; background:var(--page-card) !important; box-shadow:0 16px 38px rgba(37,62,53,.08) !important; }
 body:not(.home) .page-card h1 { max-width:760px; margin-bottom:.75rem; color:var(--text) !important; font-family:"Lora",Georgia,serif; font-size:clamp(2.2rem,5vw,3.6rem); font-weight:500; letter-spacing:-.055em; }
@@ -18,4 +30,21 @@ body:not(.home) .lesson-box { margin:1.7rem 0 !important; padding:1.25rem 1.35re
 body:not(.home) .page-card .row { margin-top:1.6rem; margin-bottom:1.6rem; }
 body:not(.home) .page-card .row>[class*="col-"] { padding:1.1rem 1.25rem; }
 body:not(.home) .page-card .row>[class*="col-"]+[class*="col-"] { border-left:1px solid var(--border); }
-@media(max-width:767px) { body:not(.home) .container.py-5,body:not(.home) .lesson-shell{padding:25px 15px 52px !important} body:not(.home) .page-card{padding:1.35rem !important} body:not(.home) .page-card h1{font-size:2.25rem} body:not(.home) .page-card .row>[class*="col-"]+[class*="col-"]{border-left:0;border-top:1px solid var(--border);margin-top:.5rem} }
+body:not(.home) .lesson-expansion { margin-top:2.6rem; padding-top:2rem; border-top:1px solid var(--border); }
+body:not(.home) .lesson-expansion-heading>span { color:var(--primary); font-size:.62rem; font-weight:800; letter-spacing:.16em; }
+body:not(.home) .lesson-expansion-heading h2 { margin:.5rem 0 .65rem; color:var(--text); font-family:"Lora",Georgia,serif; font-size:clamp(1.7rem,3vw,2.3rem); font-weight:500; }
+body:not(.home) .lesson-expansion-heading p { max-width:720px; margin:0; color:var(--muted) !important; }
+body:not(.home) .lesson-formulas { margin-top:1.6rem; padding:1.2rem; border:1px solid var(--border); border-radius:11px; background:var(--page-card); }
+body:not(.home) .lesson-formulas-heading>span { color:var(--primary); font-size:.6rem; font-weight:800; letter-spacing:.15em; }
+body:not(.home) .lesson-formulas-heading h3 { margin:.4rem 0 1rem; font-size:1.05rem; }
+body:not(.home) .formula-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:.7rem; }
+body:not(.home) .formula-card { display:flex; flex-direction:column; gap:.45rem; padding:.85rem; border-radius:8px; background:var(--lesson-box); }
+body:not(.home) .formula-card strong { color:var(--text); font-size:.76rem; }
+body:not(.home) .formula-card code { color:var(--primary); font-family:Georgia,serif; font-size:.9rem; white-space:normal; }
+body:not(.home) .lesson-guide-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin-top:1.25rem; }
+body:not(.home) .lesson-guide-grid article { padding:1.2rem; border:1px solid var(--border); border-radius:11px; background:var(--panel-soft); }
+body:not(.home) .lesson-guide-grid h3 { margin:0 0 .8rem; font-size:1rem; }
+body:not(.home) .lesson-guide-grid ol { margin:0; padding-left:1.2rem; }
+body:not(.home) .lesson-guide-grid p, body:not(.home) .lesson-guide-grid li { color:var(--muted) !important; font-size:.9rem; }
+body:not(.home) .lesson-check { margin-top:1rem; padding:.7rem .8rem; border-radius:8px; background:var(--page-card); color:var(--primary); font-size:.75rem; font-weight:700; }
+@media(max-width:767px) { body:not(.home) .lesson-header-inner{min-height:68px;padding:12px 15px;gap:12px} body:not(.home) .lesson-context{display:none} body:not(.home) .lesson-library-link{padding-right:90px;font-size:.64rem} body:not(.home) .container.py-5,body:not(.home) .lesson-shell{padding:25px 15px 52px !important} body:not(.home) .page-card{padding:1.35rem !important} body:not(.home) .page-card h1{font-size:2.25rem} body:not(.home) .page-card .row>[class*="col-"]+[class*="col-"]{border-left:0;border-top:1px solid var(--border);margin-top:.5rem} body:not(.home) .lesson-guide-grid{grid-template-columns:1fr} }

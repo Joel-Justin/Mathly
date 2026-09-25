@@ -8,7 +8,7 @@
 
   const body = document.body;
   const THEME_KEY = 'mathly-theme';
-  const lessonPages = [
+  let lessonPages = [
     'adding-and-subtracting-decimals.html',
     'adding-and-subtracting-fractions.html',
     'algebra-basics.html',
@@ -99,9 +99,13 @@
   if (!body.classList.contains('home') && !document.querySelector('link[data-lesson-theme]')) {
     const lessonTheme = document.createElement('link');
     lessonTheme.rel = 'stylesheet';
-    lessonTheme.href = '../lesson.css?v=2';
+    lessonTheme.href = '../lesson.css?v=4';
     lessonTheme.dataset.lessonTheme = 'true';
     document.head.appendChild(lessonTheme);
+    const lessonContent = document.createElement('script');
+    lessonContent.src = '../lesson-content.js?v=3';
+    lessonContent.defer = true;
+    document.head.appendChild(lessonContent);
   }
 
   function getSavedTheme() {
@@ -128,7 +132,7 @@
   }
 
   function getNextPageUrl() {
-    const currentPage = getCurrentPage();
+    const currentPage = decodeURIComponent(getCurrentPage()).toLowerCase();
     const pageList = currentPage === 'index.html' ? ['index.html', ...lessonPages] : lessonPages;
     const currentIndex = pageList.indexOf(currentPage);
 
@@ -143,6 +147,48 @@
     }
 
     return '../pages/' + nextPage;
+  }
+
+  function getNextPageTitle() {
+    const currentPage = decodeURIComponent(getCurrentPage()).toLowerCase();
+    const index = lessonPages.indexOf(currentPage);
+    const next = index >= 0 && index < lessonPages.length - 1 ? lessonPages[index + 1] : lessonPages[0];
+    return next ? next.replace(/\.html$/, '').replace(/[-_]/g, ' ').replace(/\b\w/g, letter => letter.toUpperCase()) : 'Next lesson';
+  }
+
+  async function loadCatalogOrder() {
+    if (getCurrentPage() === 'index.html') return;
+    try {
+      const response = await fetch('../mathly_topics_complete.json', { cache: 'no-store' });
+      if (!response.ok) return;
+      const catalog = await response.json();
+      const ordered = (catalog.categories || [])
+        .filter(group => group.category !== 'Home')
+        .flatMap(group => group.topics || [])
+        .map(topic => String(topic.page || '').split('/').pop().toLowerCase())
+        .filter(Boolean);
+      if (ordered.length) {
+        lessonPages = ordered;
+        const nextButton = document.querySelector('.page-next-btn');
+        if (nextButton) {
+          nextButton.href = getNextPageUrl();
+          nextButton.textContent = `Next: ${getNextPageTitle()} →`;
+        }
+      }
+    } catch { /* The built-in order remains available offline. */ }
+  }
+
+  function ensureLessonHeader() {
+    if (getCurrentPage() === 'index.html' || document.querySelector('.lesson-header')) return;
+
+    const header = document.createElement('header');
+    header.className = 'lesson-header';
+    header.innerHTML = '<div class="lesson-header-inner">' +
+      '<a class="lesson-wordmark" href="../index.html" aria-label="Mathly home"><span class="lesson-logo">m<span>·</span></span>mathly<span class="lesson-dot">.</span></a>' +
+      '<div class="lesson-context"><span>Mathly lessons</span><strong>' + document.title.replace(/\s*[|—-].*$/, '') + '</strong></div>' +
+      '<a class="lesson-library-link" href="../index.html#topics">Browse all lessons <span>↗</span></a>' +
+      '</div>';
+    body.insertBefore(header, body.firstChild);
   }
 
   function ensureControls() {
@@ -178,7 +224,7 @@
       nextButton.className = 'page-next-btn';
       nextButton.setAttribute('aria-label', 'Next page');
       nextButton.href = getNextPageUrl();
-      nextButton.textContent = 'Next →';
+      nextButton.textContent = `Next: ${getNextPageTitle()} →`;
       wrapper.appendChild(nextButton);
     } else {
       nextButton.href = getNextPageUrl();
@@ -187,8 +233,10 @@
     return toggle;
   }
 
+  ensureLessonHeader();
   const toggle = ensureControls();
   applyTheme(getSavedTheme());
+  loadCatalogOrder();
 
   toggle.addEventListener('click', function () {
     const nextTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
